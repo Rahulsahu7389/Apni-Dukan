@@ -13,6 +13,7 @@ import AddProduct from './AddProduct'
 import Cart from './CartPage'
 import Home from './Home'
 import MyOrdersPage from './MyOrdersPage'
+import ManagerOrderPage from './ManagerOrderPage'
 
 function App() {
   
@@ -26,6 +27,7 @@ function App() {
       <Route path='/cart' element={<Cart/>} />
       <Route path='/my-orders' element={<MyOrdersPage/>} />
       <Route path='/vendor/create-store' element={<CreateStore/>} />
+      <Route path='/manager-orders' element={<ManagerOrderPage/>} />
       {/* <Route path="/store/:slug" element={<StorePage />} /> */}
       <Route path='/register' element={<Register/>} />
       <Route path='/browse' element={<Browse/>} />

@@ -123,7 +123,7 @@ const Navbar = () => {
                             <li><NavLink to="/vendor/create-store">My Store</NavLink></li>
                             <li><NavLink to="/browse">Browse</NavLink></li>
                             <li><NavLink to="/add-products">Add Products</NavLink></li>
-                            <li><NavLink to="/manager-order">Orders</NavLink></li>
+                            <li><NavLink to="/manager-orders">Orders</NavLink></li>
                             <li><NavLink to="/">LogOut</NavLink></li>
 
                         </ul>
@@ -135,7 +135,7 @@ const Navbar = () => {
                             <li><NavLink className="onMobile" to="/vendor/create-store">My Store</NavLink></li>
                             <li><NavLink className="onMobile" to="/browse">Browse</NavLink></li>
                             <li><NavLink className="onMobile" to="/add-products">Add Products</NavLink></li>
-                            <li><NavLink className="onMobile" to="/manager-order">Orders</NavLink></li>
+                            <li><NavLink className="onMobile" to="/manager-orders">Orders</NavLink></li>
                             <li><NavLink className="onMobile" to="/">LogOut</NavLink></li>
                             <li className="menu-btn" onClick={showSidebar}><NavLink to="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" /></svg></NavLink></li>
                         </ul>

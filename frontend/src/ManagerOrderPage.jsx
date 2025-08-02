@@ -45,8 +45,8 @@ const ManagerOrderPage = () => {
       )}
       {myOrderInfo.map((data) => {
         return (<div key={data._id}>
-          <div key={data._id} className="store-card border">
-            <div className="card m-auto w-[55vw]">
+          <div key={data._id} className="store-card border flex justify-between my-2">
+            <div className="card m-auto w-[55vw] flex items-center justify-between p-5">
 
               {/* <img src={store.image} /> */}
               <p>{data.name}</p>
@@ -54,6 +54,7 @@ const ManagerOrderPage = () => {
               <p>{data.price}$</p>
 
             </div>
+            <button onClick={handleRemoveOrder} className='bg-red-500 text-white rounded p-2'>Remove</button>
           </div>
         </div>)
       })}
