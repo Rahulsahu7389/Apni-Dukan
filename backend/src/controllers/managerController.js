@@ -1,5 +1,6 @@
 const Store = require("../models/storeModel");
 const Product = require("../models/ProductModel");
+const Cart = require("../models/CartModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken")
 
@@ -30,9 +31,34 @@ const AddProducts = async (req,res)=>{
   }
 }
 
+const deleteOrders = async (req, res) => {
+    try {
+        const { productId } = req.query;  // Document _id passed from frontend
+        // const userId = req.user.id;       // From JWT
+        console.log(productId);
+        
+
+        if (!productId) {
+            return res.status(400).json({ success: false, message: "Product ID is required" });
+        }
+
+        // Delete only if the document belongs to the logged-in user
+        const deletedItem = await Cart.findOneAndDelete({ _id: productId});
+        if (!deletedItem) {
+            return res.status(404).json({ success: false, message: "Item not found or unauthorized" });
+        }
+
+        res.json({ success: true, message: "Item removed successfully" });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ success: false, message: "Server error" });
+    }
+};
+
+
 // module.exports = CreateStore;
 
 module.exports = {
-  CreateStore,AddProducts
+  CreateStore,AddProducts,deleteOrders,
 
 };

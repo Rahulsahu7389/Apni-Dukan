@@ -7,6 +7,7 @@ import Navbar from './Navbar'
 
 const ManagerOrderPage = () => {
     const token = localStorage.getItem("token")
+    const [currProductId, setcurrProductId] = useState("");
     const {id} = jwtDecode(token);
     const [myOrderInfo, setmyOrderInfo] = useState([]);
     const handleGetOrders = async ()=>{
@@ -21,13 +22,43 @@ const ManagerOrderPage = () => {
             })
             const data = await response.json();
             if(data.success){
-                toast.success("loaded successfully");
+                // toast.success("loaded successfully");
                 setmyOrderInfo(data.data)
             }
         } catch (error) {
             toast.error(error);
         }
     }
+
+    const handleRemoveOrder = async (_id) =>{
+      // const datahai = e.target.parentElement.children[0]._id;
+      console.log(_id);
+      const url = `http://localhost:8000/api/managers/remove-order?productId=${_id}`;
+        if(!_id){
+            toast.error("Please select a product to remove");
+            return;
+        }
+        
+        try {
+            const response = await fetch(url, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            const data = await response.json();
+            if(data.success){
+                toast.success("Order removed successfully");
+                handleGetOrders(); // Refresh the order list
+            } else {
+                toast.error(data.message);
+            }
+        } catch (error) {
+            toast.error("Failed to remove order");
+        }
+    }
+
     useEffect(() => {
       handleGetOrders();
     
@@ -54,7 +85,7 @@ const ManagerOrderPage = () => {
               <p>{data.price}$</p>
 
             </div>
-            <button onClick={handleRemoveOrder} className='bg-red-500 text-white rounded p-2'>Remove</button>
+            <button onClick={()=>handleRemoveOrder(data._id)} className='bg-red-500 text-white rounded p-2'>Remove</button>
           </div>
         </div>)
       })}
